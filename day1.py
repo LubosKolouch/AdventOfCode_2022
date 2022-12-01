@@ -27,19 +27,19 @@ class Expedition:
 
         elf_pos = 0
 
-        elf = Elf(elf_pos)
-
         with open("input1.txt", encoding="UTF-8") as in_file:
-            lines = [line.strip() for line in in_file.readlines()]
-        for line in lines:
-            if line:
-                elf.calorie_list.append(int(line))
-                elf.total_calories += int(line)
-            else:
-                self.elves.append(elf)
-                elf_pos += 1
-                elf = Elf(elf_pos)
-        self.elves.append(elf)
+            elves = [line.split("\n") for line in in_file.read().split("\n\n")]
+        for each_elf in elves:
+            elf = Elf(elf_pos)
+
+            for calorie in each_elf:
+                try:
+                    elf.calorie_list.append(int(calorie))
+                    elf.total_calories += int(calorie)
+                except ValueError:
+                    pass
+            self.elves.append(elf)
+            elf_pos += 1
 
 
 def main() -> None:
