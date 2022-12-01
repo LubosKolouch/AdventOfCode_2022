@@ -25,21 +25,20 @@ class Expedition:
     def load_expedition(self) -> None:
         """Load the expedition from the input"""
 
-        elf_pos = 0
-
         with open("input1.txt", encoding="UTF-8") as in_file:
             elves = [line.split("\n") for line in in_file.read().split("\n\n")]
-        for each_elf in elves:
+
+        for elf_pos, each_elf in enumerate(elves):
             elf = Elf(elf_pos)
 
             for calorie in each_elf:
                 try:
                     elf.calorie_list.append(int(calorie))
                     elf.total_calories += int(calorie)
+
                 except ValueError:
                     pass
             self.elves.append(elf)
-            elf_pos += 1
 
 
 def main() -> None:
