@@ -39,6 +39,7 @@ class Expedition:
                 self.elves.append(elf)
                 elf_pos += 1
                 elf = Elf(elf_pos)
+        self.elves.append(elf)
 
 
 def main() -> None:
