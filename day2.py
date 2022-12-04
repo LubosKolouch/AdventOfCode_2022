@@ -35,16 +35,14 @@ class OneRound:
 
         if self.my_item == "X":
             self.score_round_2 += self.item_value[self.winners[self.opponent]]
-            return
 
         if self.my_item == "Y":
             self.score_round_2 += self.item_value[self.equals[self.opponent]]
             self.score_round_2 += self.equal_value
-            return
 
-        # Z
-        self.score_round_2 += self.item_value[self.losers[self.opponent]]
-        self.score_round_2 += self.win_value
+        if self.my_item == "Z":
+            self.score_round_2 += self.item_value[self.losers[self.opponent]]
+            self.score_round_2 += self.win_value
 
 
 class Game:
