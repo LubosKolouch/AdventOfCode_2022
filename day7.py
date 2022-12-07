@@ -50,7 +50,7 @@ class FoldersProcessor:
 
         size = 0
         for _, item in self.folders.items():
-            if item < 100000:
+            if item <= 100000:
                 size += item
 
         return size
