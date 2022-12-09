@@ -10,7 +10,6 @@ class Snake:
         self.instr_list: list = []
         self.visited_locations: dict[tuple, int] = {(0, 0): 1}
         self.snake: list = []
-        self.old_snake: list = []
 
         for _ in range(length):
             self.snake.append([0, 0])
@@ -34,40 +33,40 @@ class Snake:
             return
 
         if self.snake[first][0] - self.snake[second][0] > 1:
-            self.old_snake[second][0] += 1
+            self.snake[second][0] += 1
 
             if self.snake[first][1] - self.snake[second][1] > 0:
-                self.old_snake[second][1] += 1
+                self.snake[second][1] += 1
 
             if self.snake[first][1] - self.snake[second][1] < 0:
-                self.old_snake[second][1] -= 1
+                self.snake[second][1] -= 1
             return
 
         if self.snake[first][0] - self.snake[second][0] < -1:
-            self.old_snake[second][0] -= 1
+            self.snake[second][0] -= 1
             if self.snake[first][1] - self.snake[second][1] > 0:
-                self.old_snake[second][1] += 1
+                self.snake[second][1] += 1
 
             if self.snake[first][1] - self.snake[second][1] < 0:
-                self.old_snake[second][1] -= 1
+                self.snake[second][1] -= 1
             return
 
         if self.snake[first][1] - self.snake[second][1] > 1:
-            self.old_snake[second][1] += 1
+            self.snake[second][1] += 1
             if self.snake[first][0] - self.snake[second][0] > 0:
-                self.old_snake[second][0] += 1
+                self.snake[second][0] += 1
 
             if self.snake[first][0] - self.snake[second][0] < 0:
-                self.old_snake[second][0] -= 1
+                self.snake[second][0] -= 1
             return
 
         if self.snake[first][1] - self.snake[second][1] < -1:
-            self.old_snake[second][1] -= 1
+            self.snake[second][1] -= 1
             if self.snake[first][0] - self.snake[second][0] > 0:
-                self.old_snake[second][0] += 1
+                self.snake[second][0] += 1
 
             if self.snake[first][0] - self.snake[second][0] < 0:
-                self.old_snake[second][0] -= 1
+                self.snake[second][0] -= 1
 
     def part1(self) -> int:
         """Get the first part result"""
@@ -81,9 +80,7 @@ class Snake:
                     self.snake[0][1] += moves[instr[0]][1]
 
                     for part in range(len(self.snake) - 1):
-                        self.old_snake = deepcopy(self.snake)
                         self.adjust_snake(first=part, second=part + 1)
-                        self.snake = deepcopy(self.old_snake)
                     self.visited_locations[tuple(self.snake[-1])] = 1
 
             except IndexError:
